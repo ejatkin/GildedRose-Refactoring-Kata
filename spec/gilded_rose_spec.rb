@@ -66,17 +66,17 @@ describe GildedRose do
   context "sulfuras" do
 
     it "never has to be sold" do
-      items = [Item.new("Sulfuras, Hand of Ragnaros", 0, 25)]
+      items = [Item.new("Sulfuras, Hand of Ragnaros", 0, 80)]
       gilded_rose = GildedRose.new(items)
       gilded_rose.update_quality
       expect(items[0].sell_in).to eq 0
     end
 
     it "never decreases in quality" do
-      items = [Item.new("Sulfuras, Hand of Ragnaros", 0, 25)]
+      items = [Item.new("Sulfuras, Hand of Ragnaros", 0, 80)]
       gilded_rose = GildedRose.new(items)
       gilded_rose.update_quality
-      expect(items[0].quality).to eq 25
+      expect(items[0].quality).to eq 80
     end
 
   end
