@@ -11,6 +11,7 @@ describe GildedRose do
   end
 
   context "system lowers selln and quality values for every item daily" do
+
     it "lowers the value of the selln value by 1 at the end of each day" do
       items = [Item.new("bread", 10, 15)]
       gilded_rose = GildedRose.new(items)
@@ -42,6 +43,10 @@ describe GildedRose do
       expect(items[0].quality).to eq 0
     end
 
+  end
+
+  context "aged brie" do
+
     it "the quality of an item is never more than 50" do
       items = [Item.new("Aged Brie", 0, 50)]
       gilded_rose = GildedRose.new(items)
@@ -55,9 +60,26 @@ describe GildedRose do
       gilded_rose.update_quality
       expect(items[0].quality).to eq 26
     end
+
   end
 
+  context "sulfuras" do
 
+    it "never has to be sold" do
+      items = [Item.new("Sulfuras, Hand of Ragnaros", 0, 25)]
+      gilded_rose = GildedRose.new(items)
+      gilded_rose.update_quality
+      expect(items[0].sell_in).to eq 0
+    end
+
+    it "never decreases in quality" do
+      items = [Item.new("Sulfuras, Hand of Ragnaros", 0, 25)]
+      gilded_rose = GildedRose.new(items)
+      gilded_rose.update_quality
+      expect(items[0].quality).to eq 25
+    end
+
+  end
 
 
 
