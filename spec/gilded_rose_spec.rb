@@ -10,4 +10,24 @@ describe GildedRose do
     end
   end
 
+  context "for normal items, excluding brie and sulfuras" do
+    it "lowers the value of the selln value by 1 at the end of each day" do
+      items = [Item.new("bread", 10, 15)]
+      gilded_rose = GildedRose.new(items)
+      gilded_rose.update_quality
+      expect(items[0].sell_in).to eq 9
+    end
+
+    it "lowers the quality value by 1 at the end of each day" do
+      items = [Item.new("bread", 10, 15)]
+      gilded_rose = GildedRose.new(items)
+      gilded_rose.update_quality
+      expect(items[0].quality).to eq 14
+    end
+
+
+
+
+  end
+
 end
