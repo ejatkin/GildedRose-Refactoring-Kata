@@ -10,7 +10,7 @@ describe GildedRose do
     end
   end
 
-  context "for normal items, excluding brie and sulfuras" do
+  context "system lowers selln and quality values for every item daily" do
     it "lowers the value of the selln value by 1 at the end of each day" do
       items = [Item.new("bread", 10, 15)]
       gilded_rose = GildedRose.new(items)
@@ -25,9 +25,20 @@ describe GildedRose do
       expect(items[0].quality).to eq 14
     end
 
-
-
-
   end
+
+  context "additional quirks for quality" do
+    it "quality degrades twice as fast once sell by date has passed" do
+      items = [Item.new("bread", 0, 15)]
+      gilded_rose = GildedRose.new(items)
+      gilded_rose.update_quality
+      expect(items[0].quality).to eq 13
+    end
+  end
+
+
+
+
+
 
 end
